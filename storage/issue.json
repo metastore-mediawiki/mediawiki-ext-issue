@@ -1,0 +1,79 @@
+{
+	"issue": {
+		"img": {
+			"id": "img",
+			"content": "img-content",
+			"category": "mw-ext-issue-img-category"
+		},
+		"wikify": {
+			"id": "wikify",
+			"content": "wikify-content",
+			"category": "mw-ext-issue-wikify-category"
+		},
+		"style": {
+			"id": "style",
+			"content": "style-content",
+			"category": "mw-ext-issue-style-category"
+		},
+		"translate": {
+			"id": "translate",
+			"content": "translate-content",
+			"category": "mw-ext-issue-translate-category"
+		},
+		"sources": {
+			"id": "sources",
+			"content": "sources-content",
+			"category": "mw-ext-issue-sources-category"
+		},
+		"empty": {
+			"id": "empty",
+			"content": "empty-content",
+			"category": "mw-ext-issue-empty-category"
+		},
+		"coord": {
+			"id": "coord",
+			"content": "coord-content",
+			"category": "mw-ext-issue-coord-category"
+		},
+		"check": {
+			"id": "check",
+			"content": "check-content",
+			"category": "mw-ext-issue-check-category"
+		},
+		"renew": {
+			"id": "renew",
+			"content": "renew-content",
+			"category": "mw-ext-issue-renew-category"
+		},
+		"infobox": {
+			"id": "infobox",
+			"content": "infobox-content",
+			"category": "mw-ext-issue-infobox-category"
+		},
+		"grammar": {
+			"id": "grammar",
+			"content": "grammar-content",
+			"category": "mw-ext-issue-grammar-category"
+		},
+		"cleanup": {
+			"id": "cleanup",
+			"content": "cleanup-content",
+			"category": "mw-ext-issue-cleanup-category"
+		},
+		"neutral": {
+			"id": "neutral",
+			"content": "neutral-content",
+			"category": "mw-ext-issue-neutral-category"
+		},
+		"cat": {
+			"id": "cat",
+			"content": "cat-content",
+			"category": "mw-ext-issue-cat-category"
+		},
+		"stub": {
+			"id": "stub",
+			"content": "stub-content",
+			"category": "mw-ext-issue-stub-category"
+		}
+	}
+}
