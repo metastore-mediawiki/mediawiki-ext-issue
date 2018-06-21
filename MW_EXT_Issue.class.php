@@ -1,9 +1,12 @@
 <?php
 
+namespace MediaWiki\Extension\MW_EXT_Issue;
+
+use Parser, PPFrame, OutputPage, Skin;
+
 /**
  * Class MW_EXT_Issue
  * ------------------------------------------------------------------------------------------------------------------ */
-
 class MW_EXT_Issue {
 
 	/**
@@ -151,7 +154,7 @@ class MW_EXT_Issue {
 	 * @param Parser $parser
 	 *
 	 * @return bool
-	 * @throws MWException
+	 * @throws \MWException
 	 * -------------------------------------------------------------------------------------------------------------- */
 
 	public static function onParserFirstCallInit( Parser $parser ) {
@@ -167,13 +170,13 @@ class MW_EXT_Issue {
 	 * @param PPFrame $frame
 	 * @param array $args
 	 *
-	 * @return bool|string
+	 * @return string
 	 * -------------------------------------------------------------------------------------------------------------- */
 
 	public static function onRenderTag( Parser $parser, PPFrame $frame, array $args ) {
 		// Out HTML.
 		$outHTML = '<div class="mw-ext-issue"><div class="mw-ext-issue-body">';
-		$outHTML .= '<div class="mw-ext-issue-icon"><div><i class="fas fa-sync"></i></div></div>';
+		$outHTML .= '<div class="mw-ext-issue-icon"><div><i class="fas fa-wrench"></i></div></div>';
 		$outHTML .= '<div class="mw-ext-issue-content">';
 		$outHTML .= '<h4>' . self::getMsgText( 'title' ) . '</h4>';
 		$outHTML .= '<ol>';
@@ -210,7 +213,7 @@ class MW_EXT_Issue {
 	 * -------------------------------------------------------------------------------------------------------------- */
 
 	public static function onBeforePageDisplay( OutputPage $out, Skin $skin ) {
-		$out->addModuleStyles( array( 'ext.mw.issue.styles' ) );
+		$out->addModuleStyles( [ 'ext.mw.issue.styles' ] );
 
 		return true;
 	}
