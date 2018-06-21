@@ -173,7 +173,7 @@ class MW_EXT_Issue {
 	 * @return string
 	 * -------------------------------------------------------------------------------------------------------------- */
 
-	public static function onRenderTag( Parser $parser, PPFrame $frame, array $args ) {
+	public static function onRenderTag( Parser $parser, PPFrame $frame, $args = [] ) {
 		// Out HTML.
 		$outHTML = '<div class="mw-ext-issue"><div class="mw-ext-issue-body">';
 		$outHTML .= '<div class="mw-ext-issue-icon"><div><i class="fas fa-wrench"></i></div></div>';
