@@ -3,53 +3,12 @@
 namespace MediaWiki\Extension\MW_EXT_Issue;
 
 use Parser, PPFrame, OutputPage, Skin;
+use MediaWiki\Extension\MW_EXT_Core\MW_EXT_Core;
 
 /**
  * Class MW_EXT_Issue
  * ------------------------------------------------------------------------------------------------------------------ */
 class MW_EXT_Issue {
-
-	/**
-	 * Clear DATA (escape html).
-	 *
-	 * @param $string
-	 *
-	 * @return string
-	 * -------------------------------------------------------------------------------------------------------------- */
-
-	private static function clearData( $string ) {
-		$outString = htmlspecialchars( trim( $string ), ENT_QUOTES );
-
-		return $outString;
-	}
-
-	/**
-	 * Convert DATA (replace space & lower case).
-	 *
-	 * @param $string
-	 *
-	 * @return string
-	 * -------------------------------------------------------------------------------------------------------------- */
-
-	private static function convertData( $string ) {
-		$outString = mb_strtolower( str_replace( ' ', '-', $string ), 'UTF-8' );
-
-		return $outString;
-	}
-
-	/**
-	 * Get MediaWiki issue.
-	 *
-	 * @param $string
-	 *
-	 * @return string
-	 * -------------------------------------------------------------------------------------------------------------- */
-
-	private static function getMsgText( $string ) {
-		$outString = wfMessage( 'mw-ext-issue-' . $string )->inContentLanguage()->text();
-
-		return $outString;
-	}
 
 	/**
 	 * Get JSON data.
@@ -178,17 +137,17 @@ class MW_EXT_Issue {
 		$outHTML = '<div class="mw-ext-issue"><div class="mw-ext-issue-body">';
 		$outHTML .= '<div class="mw-ext-issue-icon"><div><i class="fas fa-wrench"></i></div></div>';
 		$outHTML .= '<div class="mw-ext-issue-content">';
-		$outHTML .= '<h4>' . self::getMsgText( 'title' ) . '</h4>';
+		$outHTML .= '<h4>' . MW_EXT_Core::getMessageText( 'issue', 'title' ) . '</h4>';
 		$outHTML .= '<ol>';
 
 		for ( $arg = array_shift( $args ); isset( $arg ); $arg = array_shift( $args ) ) {
-			$type = self::convertData( $frame->expand( $arg ) );
+			$type = MW_EXT_Core::outConvert( $frame->expand( $arg ) );
 
 			if ( ! self::getIssue( $type ) ) {
-				$outHTML .= '<li>' . self::getMsgText( 'error' ) . '</li>';
+				$outHTML .= '<li>' . MW_EXT_Core::getMessageText( 'issue', 'error' ) . '</li>';
 				$parser->addTrackingCategory( 'mw-ext-issue-error-category' );
 			} else {
-				$outHTML .= '<li>' . self::getMsgText( self::getIssueContent( $type ) ) . '</li>';
+				$outHTML .= '<li>' . MW_EXT_Core::getMessageText( 'issue', self::getIssueContent( $type ) ) . '</li>';
 				$parser->addTrackingCategory( self::getIssueCategory( $type ) );
 			}
 		}
