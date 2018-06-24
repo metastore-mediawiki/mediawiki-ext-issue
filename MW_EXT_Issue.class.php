@@ -152,9 +152,7 @@ class MW_EXT_Issue {
 			}
 		}
 
-		$outHTML .= '</ol>';
-		$outHTML .= '</div>';
-		$outHTML .= '</div></div>';
+		$outHTML .= '</ol></div></div></div>';
 
 		// Out parser.
 		$outParser = $parser->insertStripItem( $outHTML, $parser->mStripState );
