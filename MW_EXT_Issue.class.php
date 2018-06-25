@@ -137,8 +137,9 @@ class MW_EXT_Issue {
 		$outHTML = '<div class="mw-ext-issue navigation-not-searchable"><div class="mw-ext-issue-body">';
 		$outHTML .= '<div class="mw-ext-issue-icon"><div><i class="fas fa-wrench"></i></div></div>';
 		$outHTML .= '<div class="mw-ext-issue-content">';
-		$outHTML .= '<h4>' . MW_EXT_Core::getMessageText( 'issue', 'title' ) . '</h4>';
-		$outHTML .= '<ol>';
+		$outHTML .= '<div class="mw-ext-issue-title">' . MW_EXT_Core::getMessageText( 'issue', 'title' ) . '</div>';
+		$outHTML .= '<div class="mw-ext-issue-list">';
+		$outHTML .= '<ul>';
 
 		foreach ( $args as $arg ) {
 			$type = MW_EXT_Core::outConvert( $frame->expand( $arg ) );
@@ -152,7 +153,7 @@ class MW_EXT_Issue {
 			}
 		}
 
-		$outHTML .= '</ol></div></div></div>';
+		$outHTML .= '</ul></div></div></div></div>';
 
 		// Out parser.
 		$outParser = $parser->insertStripItem( $outHTML, $parser->mStripState );
