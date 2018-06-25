@@ -140,7 +140,7 @@ class MW_EXT_Issue {
 		$outHTML .= '<h4>' . MW_EXT_Core::getMessageText( 'issue', 'title' ) . '</h4>';
 		$outHTML .= '<ol>';
 
-		for ( $arg = array_shift( $args ); isset( $arg ); $arg = array_shift( $args ) ) {
+		foreach ( $args as $arg ) {
 			$type = MW_EXT_Core::outConvert( $frame->expand( $arg ) );
 
 			if ( ! self::getIssue( $type ) ) {
