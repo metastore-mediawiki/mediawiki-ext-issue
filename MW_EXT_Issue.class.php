@@ -134,7 +134,7 @@ class MW_EXT_Issue {
 
 	public static function onRenderTag( Parser $parser, PPFrame $frame, $args = [] ) {
 		// Out HTML.
-		$outHTML = '<div class="mw-ext-issue navigation-not-searchable"><div class="mw-ext-issue-body">';
+		$outHTML = '<div class="mw-ext-issue navigation-not-searchable mw-ext-box"><div class="mw-ext-issue-body">';
 		$outHTML .= '<div class="mw-ext-issue-icon"><div><i class="fas fa-wrench"></i></div></div>';
 		$outHTML .= '<div class="mw-ext-issue-content">';
 		$outHTML .= '<div class="mw-ext-issue-title">' . MW_EXT_Core::getMessageText( 'issue', 'title' ) . '</div>';
