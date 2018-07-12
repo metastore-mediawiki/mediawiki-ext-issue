@@ -142,7 +142,7 @@ class MW_EXT_Issue {
 		$outHTML .= '<ul>';
 
 		foreach ( $args as $arg ) {
-			$type = MW_EXT_Core::outConvert( $frame->expand( $arg ) );
+			$type = MW_EXT_Core::outNormalize( $frame->expand( $arg ) );
 
 			if ( ! self::getIssue( $type ) ) {
 				$outHTML .= '<li>' . MW_EXT_Core::getMessageText( 'issue', 'error' ) . '</li>';
