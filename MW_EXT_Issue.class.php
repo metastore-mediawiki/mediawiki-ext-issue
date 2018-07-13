@@ -7,21 +7,8 @@ use MediaWiki\Extension\MW_EXT_Core\MW_EXT_Core;
 
 /**
  * Class MW_EXT_Issue
- * ------------------------------------------------------------------------------------------------------------------ */
+ */
 class MW_EXT_Issue {
-
-	/**
-	 * Get JSON data.
-	 *
-	 * @return mixed
-	 * -------------------------------------------------------------------------------------------------------------- */
-
-	private static function getData() {
-		$getData = file_get_contents( __DIR__ . '/storage/issue.json' );
-		$outData = json_decode( $getData, true );
-
-		return $outData;
-	}
 
 	/**
 	 * Get issue.
@@ -29,10 +16,9 @@ class MW_EXT_Issue {
 	 * @param $issue
 	 *
 	 * @return mixed
-	 * -------------------------------------------------------------------------------------------------------------- */
-
+	 */
 	private static function getIssue( $issue ) {
-		$getData = self::getData();
+		$getData = MW_EXT_Core::getJSON( __DIR__ . '/storage/issue.json' );
 
 		if ( ! isset( $getData['issue'][ $issue ] ) ) {
 			return false;
@@ -50,8 +36,7 @@ class MW_EXT_Issue {
 	 * @param $issue
 	 *
 	 * @return mixed
-	 * -------------------------------------------------------------------------------------------------------------- */
-
+	 */
 	private static function getIssueID( $issue ) {
 		$issue = self::getIssue( $issue ) ? self::getIssue( $issue ) : '';
 
@@ -71,8 +56,7 @@ class MW_EXT_Issue {
 	 * @param $issue
 	 *
 	 * @return mixed
-	 * -------------------------------------------------------------------------------------------------------------- */
-
+	 */
 	private static function getIssueContent( $issue ) {
 		$issue = self::getIssue( $issue ) ? self::getIssue( $issue ) : '';
 
@@ -92,8 +76,7 @@ class MW_EXT_Issue {
 	 * @param $issue
 	 *
 	 * @return mixed
-	 * -------------------------------------------------------------------------------------------------------------- */
-
+	 */
 	private static function getIssueCategory( $issue ) {
 		$issue = self::getIssue( $issue ) ? self::getIssue( $issue ) : '';
 
@@ -114,8 +97,7 @@ class MW_EXT_Issue {
 	 *
 	 * @return bool
 	 * @throws \MWException
-	 * -------------------------------------------------------------------------------------------------------------- */
-
+	 */
 	public static function onParserFirstCallInit( Parser $parser ) {
 		$parser->setFunctionHook( 'issue', [ __CLASS__, 'onRenderTag' ], Parser::SFH_OBJECT_ARGS );
 
@@ -130,8 +112,7 @@ class MW_EXT_Issue {
 	 * @param array $args
 	 *
 	 * @return string
-	 * -------------------------------------------------------------------------------------------------------------- */
-
+	 */
 	public static function onRenderTag( Parser $parser, PPFrame $frame, $args = [] ) {
 		// Out HTML.
 		$outHTML = '<div class="mw-ext-issue navigation-not-searchable mw-ext-box"><div class="mw-ext-issue-body">';
@@ -168,8 +149,7 @@ class MW_EXT_Issue {
 	 * @param Skin $skin
 	 *
 	 * @return bool
-	 * -------------------------------------------------------------------------------------------------------------- */
-
+	 */
 	public static function onBeforePageDisplay( OutputPage $out, Skin $skin ) {
 		$out->addModuleStyles( [ 'ext.mw.issue.styles' ] );
 
