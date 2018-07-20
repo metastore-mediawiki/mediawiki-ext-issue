@@ -3,7 +3,7 @@
 namespace MediaWiki\Extension\MW_EXT_Issue;
 
 use Parser, PPFrame, OutputPage, Skin;
-use MediaWiki\Extension\MW_EXT_Core\MW_EXT_Core;
+use MediaWiki\Extension\MW_EXT_Kernel\MW_EXT_Kernel;
 
 /**
  * Class MW_EXT_Issue
@@ -18,7 +18,7 @@ class MW_EXT_Issue {
 	 * @return mixed
 	 */
 	private static function getIssue( $issue ) {
-		$getData = MW_EXT_Core::getJSON( __DIR__ . '/storage/issue.json' );
+		$getData = MW_EXT_Kernel::getJSON( __DIR__ . '/storage/issue.json' );
 
 		if ( ! isset( $getData['issue'][ $issue ] ) ) {
 			return false;
@@ -118,18 +118,18 @@ class MW_EXT_Issue {
 		$outHTML = '<div class="mw-ext-issue navigation-not-searchable mw-ext-box"><div class="mw-ext-issue-body">';
 		$outHTML .= '<div class="mw-ext-issue-icon"><div><i class="fas fa-wrench"></i></div></div>';
 		$outHTML .= '<div class="mw-ext-issue-content">';
-		$outHTML .= '<div class="mw-ext-issue-title">' . MW_EXT_Core::getMessageText( 'issue', 'title' ) . '</div>';
+		$outHTML .= '<div class="mw-ext-issue-title">' . MW_EXT_Kernel::getMessageText( 'issue', 'title' ) . '</div>';
 		$outHTML .= '<div class="mw-ext-issue-list">';
 		$outHTML .= '<ul>';
 
 		foreach ( $args as $arg ) {
-			$type = MW_EXT_Core::outNormalize( $frame->expand( $arg ) );
+			$type = MW_EXT_Kernel::outNormalize( $frame->expand( $arg ) );
 
 			if ( ! self::getIssue( $type ) ) {
-				$outHTML .= '<li>' . MW_EXT_Core::getMessageText( 'issue', 'error' ) . '</li>';
+				$outHTML .= '<li>' . MW_EXT_Kernel::getMessageText( 'issue', 'error' ) . '</li>';
 				$parser->addTrackingCategory( 'mw-ext-issue-error-category' );
 			} else {
-				$outHTML .= '<li>' . MW_EXT_Core::getMessageText( 'issue', self::getIssueContent( $type ) ) . '</li>';
+				$outHTML .= '<li>' . MW_EXT_Kernel::getMessageText( 'issue', self::getIssueContent( $type ) ) . '</li>';
 				$parser->addTrackingCategory( self::getIssueCategory( $type ) );
 			}
 		}
