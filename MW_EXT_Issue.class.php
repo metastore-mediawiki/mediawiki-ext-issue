@@ -1,9 +1,8 @@
 <?php
 
-namespace MediaWiki\Extension\MW_EXT_Issue;
+namespace MediaWiki\Extension\METADATA;
 
 use Parser, PPFrame, OutputPage, Skin;
-use MediaWiki\Extension\MW_EXT_Kernel\MW_EXT_Kernel;
 
 /**
  * Class MW_EXT_Issue
