@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extension\METADATA;
+namespace MediaWiki\Extension\MetaStore;
 
 use Parser, PPFrame, OutputPage, Skin;
 
@@ -14,19 +14,13 @@ class MW_EXT_Issue {
 	 *
 	 * @param $issue
 	 *
-	 * @return mixed
+	 * @return array
 	 */
 	private static function getIssue( $issue ) {
-		$getData = MW_EXT_Kernel::getJSON( __DIR__ . '/storage/issue.json' );
+		$get = MW_EXT_Kernel::getJSON( __DIR__ . '/storage/issue.json' );
+		$out = $get['issue'][ $issue ] ?? [] ?: [];
 
-		if ( ! isset( $getData['issue'][ $issue ] ) ) {
-			return false;
-		}
-
-		$getIssue = $getData['issue'][ $issue ];
-		$outIssue = $getIssue;
-
-		return $outIssue;
+		return $out;
 	}
 
 	/**
@@ -34,19 +28,13 @@ class MW_EXT_Issue {
 	 *
 	 * @param $issue
 	 *
-	 * @return mixed
+	 * @return mixed|string
 	 */
 	private static function getIssueID( $issue ) {
 		$issue = self::getIssue( $issue ) ? self::getIssue( $issue ) : '';
+		$out   = $issue['id'] ?? '' ?: '';
 
-		if ( ! isset( $issue['id'] ) ) {
-			return false;
-		}
-
-		$getID = $issue['id'];
-		$outID = $getID;
-
-		return $outID;
+		return $out;
 	}
 
 	/**
@@ -54,19 +42,13 @@ class MW_EXT_Issue {
 	 *
 	 * @param $issue
 	 *
-	 * @return mixed
+	 * @return mixed|string
 	 */
 	private static function getIssueContent( $issue ) {
 		$issue = self::getIssue( $issue ) ? self::getIssue( $issue ) : '';
+		$out   = $issue['content'] ?? '' ?: '';
 
-		if ( ! isset( $issue['content'] ) ) {
-			return false;
-		}
-
-		$getContent = $issue['content'];
-		$outContent = $getContent;
-
-		return $outContent;
+		return $out;
 	}
 
 	/**
@@ -74,19 +56,13 @@ class MW_EXT_Issue {
 	 *
 	 * @param $issue
 	 *
-	 * @return mixed
+	 * @return mixed|string
 	 */
 	private static function getIssueCategory( $issue ) {
 		$issue = self::getIssue( $issue ) ? self::getIssue( $issue ) : '';
+		$out   = $issue['category'] ?? '' ?: '';
 
-		if ( ! isset( $issue['category'] ) ) {
-			return false;
-		}
-
-		$getCategory = $issue['category'];
-		$outCategory = $getCategory;
-
-		return $outCategory;
+		return $out;
 	}
 
 	/**
