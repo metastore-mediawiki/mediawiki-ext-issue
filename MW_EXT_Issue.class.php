@@ -16,7 +16,7 @@ class MW_EXT_Issue {
 	 *
 	 * @return array
 	 */
-	private static function getIssue( $issue ) {
+	private static function getData( $issue ) {
 		$get = MW_EXT_Kernel::getJSON( __DIR__ . '/storage/issue.json' );
 		$out = $get['issue'][ $issue ] ?? [] ?: [];
 
@@ -30,8 +30,8 @@ class MW_EXT_Issue {
 	 *
 	 * @return mixed|string
 	 */
-	private static function getIssueID( $issue ) {
-		$issue = self::getIssue( $issue ) ? self::getIssue( $issue ) : '';
+	private static function getID( $issue ) {
+		$issue = self::getData( $issue ) ? self::getData( $issue ) : '';
 		$out   = $issue['id'] ?? '' ?: '';
 
 		return $out;
@@ -44,8 +44,8 @@ class MW_EXT_Issue {
 	 *
 	 * @return mixed|string
 	 */
-	private static function getIssueContent( $issue ) {
-		$issue = self::getIssue( $issue ) ? self::getIssue( $issue ) : '';
+	private static function getContent( $issue ) {
+		$issue = self::getData( $issue ) ? self::getData( $issue ) : '';
 		$out   = $issue['content'] ?? '' ?: '';
 
 		return $out;
@@ -58,8 +58,8 @@ class MW_EXT_Issue {
 	 *
 	 * @return mixed|string
 	 */
-	private static function getIssueCategory( $issue ) {
-		$issue = self::getIssue( $issue ) ? self::getIssue( $issue ) : '';
+	private static function getCategory( $issue ) {
+		$issue = self::getData( $issue ) ? self::getData( $issue ) : '';
 		$out   = $issue['category'] ?? '' ?: '';
 
 		return $out;
@@ -100,12 +100,12 @@ class MW_EXT_Issue {
 		foreach ( $args as $arg ) {
 			$type = MW_EXT_Kernel::outNormalize( $frame->expand( $arg ) );
 
-			if ( ! self::getIssue( $type ) ) {
+			if ( ! self::getData( $type ) ) {
 				$outHTML .= '<li>' . MW_EXT_Kernel::getMessageText( 'issue', 'error' ) . '</li>';
 				$parser->addTrackingCategory( 'mw-ext-issue-error-category' );
 			} else {
-				$outHTML .= '<li>' . MW_EXT_Kernel::getMessageText( 'issue', self::getIssueContent( $type ) ) . '</li>';
-				$parser->addTrackingCategory( self::getIssueCategory( $type ) );
+				$outHTML .= '<li>' . MW_EXT_Kernel::getMessageText( 'issue', self::getContent( $type ) ) . '</li>';
+				$parser->addTrackingCategory( self::getCategory( $type ) );
 			}
 		}
 
